@@ -25,7 +25,7 @@ export const StateProvider = ({ children }) => {
 	}
 	function removeCard(data) {
 		setLoading(true);
-		setCards(cards.filter((card) => card !== data)); //@TODO: Filter the card we want to delete
+		setCards(cards.filter((card) => card.id !== data.id));
 		setLoading(false);
 	}
 	return (

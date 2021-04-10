@@ -27,7 +27,8 @@ export const EditForm = Template.bind({});
 EditForm.args = {
 	card,
 	onSubmit: action,
+	isOpen: true,
 };
 
 export const NewForm = Template.bind({});
-NewForm.args = { onSubmit: action };
+NewForm.args = { onSubmit: action, isOpen: true };

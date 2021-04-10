@@ -4,9 +4,10 @@ import { generateUUID } from '../../utils';
 interface FormProps {
 	card?: CardType;
 	onSubmit: Function;
+	isOpen: boolean;
 }
 
-const Card: React.FC<FormProps> = ({ card, onSubmit }) => {
+const Card: React.FC<FormProps> = ({ card, onSubmit, isOpen }) => {
 	const formTitle = card ? 'Editar targeta' : 'Nueva targeta';
 	const formActionText = card ? 'Guardar cambios' : 'Añadir';
 	const { id = generateUUID(), title: titleValue = '', description: descriptionValue = '', image: imageValue = '' } =
@@ -56,7 +57,7 @@ const Card: React.FC<FormProps> = ({ card, onSubmit }) => {
 	};
 	return (
 		<dialog
-			open
+			open={isOpen}
 			style={{
 				border: 'none',
 				position: 'absolute',
