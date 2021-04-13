@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import cardsClient from '../utils/cards-client';
 
 export const StateContext = createContext();
 
@@ -6,7 +7,15 @@ export const StateProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true);
 	const [cards, setCards] = useState([]);
 	const [error, setError] = useState(null);
+	// eslint-disable-next-line no-unused-vars
+	const [formState, setFormState] = useState({ isOpen: false, cardData: null });
 
+	function openForm(cardData) {
+		setFormState({ isOpen: true, cardData: cardData });
+	}
+	function closeForm() {
+		setFormState({ isOpen: false });
+	}
 	function dismissError() {
 		// eslint-disable-next-line no-console
 		console.log('ERROR DISMISSED');
@@ -18,9 +27,14 @@ export const StateProvider = ({ children }) => {
 		setCards(cardsClient.loadStoredCards());
 		setLoading(false);
 	}
-	function addCard(data) {
+	function saveCard(data) {
 		setLoading(true);
-		setCards(...cards, data);
+		if (cards.find((card) => card.id === data.id)) {
+			setCards(cards.map((card) => (card.id === data.id ? data : card)));
+		} else {
+			setCards([...cards, data]);
+		}
+		closeForm();
 		setLoading(false);
 	}
 	function removeCard(data) {
@@ -29,7 +43,20 @@ export const StateProvider = ({ children }) => {
 		setLoading(false);
 	}
 	return (
-		<StateContext.Provider value={{ loading, cards, loadCards, addCard, removeCard, dismissError, error }}>
+		<StateContext.Provider
+			value={{
+				loading,
+				cards,
+				loadCards,
+				saveCard,
+				removeCard,
+				dismissError,
+				openForm,
+				closeForm,
+				formState,
+				error,
+			}}
+		>
 			{children}
 		</StateContext.Provider>
 	);

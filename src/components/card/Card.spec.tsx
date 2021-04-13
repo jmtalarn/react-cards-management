@@ -17,7 +17,7 @@ const card: CardType = {
 test('renders the Card component', () => {
 	const { queryByTestId } = render(
 		<ApiProvider>
-			<Card {...card} />
+			<Card card={card} />
 		</ApiProvider>,
 	);
 

@@ -21,14 +21,14 @@ const Template: Story = (args) => <Card {...args} />;
 
 export const DefaultCard = Template.bind({});
 DefaultCard.args = {
-	...card,
+	card,
 };
 
 export const CardNoImage = Template.bind({});
 // eslint-disable-next-line no-unused-vars
 const { image, ...rest } = card;
 CardNoImage.args = {
-	...rest,
+	rest,
 };
 
 export const EmptyCard = Template.bind({});

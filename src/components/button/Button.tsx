@@ -1,21 +1,17 @@
 import React from 'react';
 
 export interface ButtonProps {
-	/**
-	 * Is this the principal call to action on the page?
-	 */
 	primary?: boolean;
 
-	/**
-	 * Optional click handler
-	 */
+	type?: 'new' | 'edit' | 'delete';
+
 	onClick?: () => void;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Button: React.FC<ButtonProps> = ({ primary = false, style, ...props }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ primary = false, type, style, ...props }: ButtonProps) => {
 	const color = primary ? 'var(--primaryColor)' : 'var(--secondaryColor)';
 
 	const buttonStyle = {
@@ -32,16 +28,46 @@ export const Button: React.FC<ButtonProps> = ({ primary = false, style, ...props
 		...style,
 		boxShadow: '2px 2px 5px 1px dimgray',
 	};
-
+	let content = '';
+	switch (type) {
+		case 'add':
+			content = (
+				<span
+					role="img"
+					aria-label="The plus sign indicating you can add a new card"
+					style={{ top: '0.15rem', position: 'relative' }}
+				>
+					➕
+				</span>
+			);
+			break;
+		case 'edit':
+			content = (
+				<span
+					role="img"
+					aria-label="A pencil indicating you can edit the card"
+					style={{ top: '0.15rem', position: 'relative' }}
+				>
+					✏️
+				</span>
+			);
+			break;
+		case 'delete':
+			content = (
+				<span
+					role="img"
+					aria-label="A trash bin indicating you can delete the card"
+					style={{ top: '0.15rem', position: 'relative' }}
+				>
+					🗑
+				</span>
+			);
+			break;
+	}
 	return (
 		<button style={buttonStyle} type="button" {...props}>
-			<span
-				role="img"
-				aria-label="The plus sign indicating you can add a new card"
-				style={{ top: '0.15rem', position: 'relative' }}
-			>
-				➕
-			</span>
+			{content}
 		</button>
 	);
 };
+export default Button;

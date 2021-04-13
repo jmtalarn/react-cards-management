@@ -14,9 +14,11 @@ export const Primary = Template.bind({});
 Primary.args = {
 	primary: true,
 	label: 'Button',
+	type: 'add',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
 	label: 'Button',
+	type: 'add',
 };

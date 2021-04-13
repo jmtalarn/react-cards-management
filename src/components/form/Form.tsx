@@ -65,7 +65,8 @@ const Card: React.FC<FormProps> = ({ card, onSubmit, isOpen }) => {
 				height: '100%',
 				top: '0',
 				left: '0',
-				backgroundColor: '#c0c0c055',
+				padding: '0',
+				backgroundColor: '#00000088',
 			}}
 		>
 			<form
