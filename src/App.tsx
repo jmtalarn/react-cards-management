@@ -19,7 +19,9 @@ function AppWrapped() {
 }
 
 function App() {
-	const { cards, saveCard, removeCard, loadCards, loading, openForm, formState } = useContext(StateContext);
+	const { cards, saveCard, removeCard, loadCards, loading, openForm, closeForm, formState } = useContext(
+		StateContext,
+	);
 
 	useEffect(() => {
 		loadCards();
@@ -54,7 +56,14 @@ function App() {
 				/>
 			</Content>
 
-			<Form card={formState.cardData} isOpen={formState.isOpen} onSubmit={saveCard} />
+			{formState.isOpen && (
+				<Form
+					card={formState.cardData}
+					isOpen={formState.isOpen}
+					onSubmit={saveCard}
+					onClickOutside={closeForm}
+				/>
+			)}
 		</Main>
 	);
 }

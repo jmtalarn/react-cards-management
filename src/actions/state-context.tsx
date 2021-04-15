@@ -14,7 +14,7 @@ export const StateProvider = ({ children }) => {
 		setFormState({ isOpen: true, cardData: cardData });
 	}
 	function closeForm() {
-		setFormState({ isOpen: false });
+		setFormState({ isOpen: false, cardData: null });
 	}
 	function dismissError() {
 		// eslint-disable-next-line no-console
@@ -32,7 +32,9 @@ export const StateProvider = ({ children }) => {
 		if (cards.find((card) => card.id === data.id)) {
 			setCards(cards.map((card) => (card.id === data.id ? data : card)));
 		} else {
-			setCards([...cards, data]);
+			const moarCards = [...cards, data];
+			setCards(moarCards);
+			cardsClient.saveCardsToStorage(moarCards);
 		}
 		closeForm();
 		setLoading(false);
