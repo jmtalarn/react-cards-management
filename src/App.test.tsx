@@ -9,10 +9,8 @@ test('renders the whole App', () => {
 			<App />
 		</StateProvider>,
 	);
-	const element = getByText(/Phone Catalog/i);
+	const element = getByText(/➕/i);
 	expect(element).toBeInTheDocument();
 
-	expect(queryByTestId('header')).toBeInTheDocument();
-	expect(queryByTestId('main')).toBeInTheDocument();
-	expect(queryByTestId('footer')).toBeInTheDocument();
+	expect(queryByTestId('content')).toBeInTheDocument();
 });
