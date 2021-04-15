@@ -3,7 +3,7 @@ import React from 'react';
 export interface ButtonProps {
 	primary?: boolean;
 
-	type?: 'new' | 'edit' | 'delete';
+	type?: 'new' | 'edit' | 'delete' | 'asc' | 'desc';
 
 	onClick?: () => void;
 }
@@ -63,6 +63,27 @@ const Button: React.FC<ButtonProps> = ({ primary = false, type, style, ...props 
 				</span>
 			);
 			break;
+		case 'asc':
+			content = (
+				<span
+					role="img"
+					aria-label="An arrow up indicating the ascending order"
+					style={{ top: '0.15rem', position: 'relative' }}
+				>
+					🔼
+				</span>
+			);
+			break;
+		case 'desc':
+			content = (
+				<span
+					role="img"
+					aria-label="An arrow down indicating the ascending order"
+					style={{ top: '0.15rem', position: 'relative' }}
+				>
+					🔽
+				</span>
+			);
 	}
 	return (
 		<button style={buttonStyle} type="button" {...props}>

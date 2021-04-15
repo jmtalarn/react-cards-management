@@ -10,6 +10,12 @@ const NewCardButton = styled(Button)`
 	bottom: 2rem;
 `;
 
+const SortButton = styled(Button)`
+	transform: scale(1.5);
+	position: absolute;
+	right: 8rem;
+	bottom: 2rem;
+`;
 function AppWrapped() {
 	return (
 		<StateProvider>
@@ -19,9 +25,18 @@ function AppWrapped() {
 }
 
 function App() {
-	const { cards, saveCard, removeCard, loadCards, loading, openForm, closeForm, formState } = useContext(
-		StateContext,
-	);
+	const {
+		cards,
+		saveCard,
+		removeCard,
+		loadCards,
+		loading,
+		openForm,
+		closeForm,
+		formState,
+		invertOrder,
+		order,
+	} = useContext(StateContext);
 
 	useEffect(() => {
 		loadCards();
@@ -49,11 +64,13 @@ function App() {
 				)}
 				{loading && <Loader show />}
 				<NewCardButton
+					primary
 					type="add"
 					onClick={() => {
 						openForm();
 					}}
 				/>
+				<SortButton type={order === 'ASC' ? 'asc' : 'desc'} onClick={invertOrder} />
 			</Content>
 
 			{formState.isOpen && (

@@ -10,15 +10,38 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const NewPrimary = Template.bind({});
+NewPrimary.args = {
 	primary: true,
 	label: 'Button',
-	type: 'add',
+	type: 'new',
+};
+
+export const EditPrimary = Template.bind({});
+EditPrimary.args = {
+	primary: true,
+	label: 'Button',
+	type: 'edit',
+};
+
+export const DeletePrimary = Template.bind({});
+DeletePrimary.args = {
+	primary: true,
+	label: 'Button',
+	type: 'delete',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
 	label: 'Button',
-	type: 'add',
+};
+export const AscSecondary = Template.bind({});
+AscSecondary.args = {
+	label: 'Button',
+	type: 'asc',
+};
+export const DescSecondary = Template.bind({});
+DescSecondary.args = {
+	label: 'Button',
+	type: 'desc',
 };
